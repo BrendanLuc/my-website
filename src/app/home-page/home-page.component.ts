@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -11,5 +19,4 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
