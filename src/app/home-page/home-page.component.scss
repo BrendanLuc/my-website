@@ -1,6 +1,75 @@
-.card {
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+// rules for the 8 image lay out
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 1) {
+    width: 33.33%
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 2) {
+    width: 33.33%
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 3) {
+    width: 33.33%
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 4) {
+    width: 50%;
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 5) {
+    width: 50%
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 6) {
+    width: 33.33%;
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 7) {
+    width: 33.33%
+}
+
+.photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 8) {
+    width: 33.33%
+}
+
+// fade the image hover
+.image-hover-fade .photo-gallery-image img {
+    transition: opacity 250ms ease-out
+}
+
+// hover over image creates fade
+.image-hover-fade .photo-gallery-item:hover .photo-gallery-image img {
+    opacity: .4
+}
+
+// for photo-wall-image
+.photo-gallery-item {
+    position: relative;
+    float: left;
+    box-sizing: border-box
+}
+
+// control the next photo-wall-image
+.photo-gallery-item:after {
+    content: '';
+    display: block;
+    padding-bottom: 62%;
+}
+
+// image background
+.photo-gallery-image {
+    background-color: #000
+}
+
+// photo-wall-image inner
+.photo-gallery-item-inside {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    bottom: 0px;
+    left: 0;
+    overflow: hidden;
+}
+
+.photo-gallery-image img {
+    opacity: .6
 }
