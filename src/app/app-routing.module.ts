@@ -13,6 +13,12 @@ const routes: Routes = [
     component: HomeComponent, 
     children: [
       {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+
+      },
+      {
         path: 'home',
         component: HomePageComponent
       },
@@ -32,7 +38,6 @@ const routes: Routes = [
         component: PassionsComponent
       }
     ]
-
   },
   {
     path : '**',
