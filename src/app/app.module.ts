@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ResumeComponent } from './resume/resume.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { PassionsComponent } from './passions/passions.component';
+import { SortingVisualizerComponent } from './projects/sorting-visualizer/sorting-visualizer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PassionsComponent } from './passions/passions.component';
     HomePageComponent,
     ResumeComponent,
     ProjectsComponent,
-    PassionsComponent
+    PassionsComponent,
+    SortingVisualizerComponent
   ],
   imports: [
     BrowserModule,

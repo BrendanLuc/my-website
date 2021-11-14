@@ -6,6 +6,8 @@ import { ResumeComponent } from './resume/resume.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectsComponent } from './projects/projects.component'
 import { PassionsComponent } from './passions/passions.component';
+import { SortingVisualizerComponent } from './projects/sorting-visualizer/sorting-visualizer.component';
+
 
 const routes: Routes = [
   { 
@@ -16,7 +18,6 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home',
         pathMatch: 'full'
-
       },
       {
         path: 'home',
@@ -32,8 +33,20 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        component: ProjectsComponent
-      },      {
+        // component: ProjectsComponent,
+        children: [
+          {
+            path: '',
+            component: ProjectsComponent
+          },
+          {
+            path: 'sorting-visualizer',
+            component: SortingVisualizerComponent
+          }
+        ]
+      },
+
+      {
         path: 'passions',
         component: PassionsComponent
       }

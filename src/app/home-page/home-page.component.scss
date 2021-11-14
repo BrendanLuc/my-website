@@ -1,3 +1,7 @@
+body {
+    width: 100%;
+}
+
 // rules for the 8 image lay out
 .photo-gallery-layout [photo-gallery-length='8'] .photo-gallery-item:nth-child(8n + 1) {
     width: 33.33%
