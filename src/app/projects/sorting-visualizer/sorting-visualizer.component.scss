@@ -9,6 +9,12 @@
     // align-items: center;
 }
 
+form {
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+}
+
 .button-array {
     display: flex;
     justify-content: center;
@@ -36,6 +42,33 @@
     // display: flex;
     // vertical-align: top;
     background: #6cc3d5;
+    margin: 1px;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.array-bar[target=_primary] {
+    // display: flex;
+    // vertical-align: top;
+    background: #6cc3d5;
+    margin: 1px;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.array-bar[target=_secondary] {
+    // display: flex;
+    // vertical-align: top;
+    background: #fd7e14;
+    margin: 1px;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.array-bar[target=_swap] {
+    // display: flex;
+    // vertical-align: top;
+    background: #56cc9d;
     margin: 1px;
     width: 10px;
     border-radius: 5px;
