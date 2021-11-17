@@ -1,1 +1,24 @@
-<p>sorting-visualizer works!</p>
+<div class="big-container">
+    <div class="button-array">
+        <button type="button" class="btn btn-outline-dark" (click)="reset_array()">Generate New Numbers</button>
+        <button type="button" class="btn btn-success" (click)="animateBubbleSort()">Bubble Sort</button>
+        <button type="button" class="btn btn-info" (click)="animateInsertionSort()">Insertion Sort</button>
+        <button type="button" class="btn btn-danger" (click)="animateMergeSort()">Merge Sort</button>
+        <button type="button" class="btn btn-warning" (click)="animateSelectionSort()">Selection Sort</button>
+        <button type="button" class="btn btn-outline-dark" (click)="toggleRunning()">{{this.RUN_STATUS ? "PAUSE" : "RUN"}}</button>
+    </div>
+    <!-- <div class="slidecontainer">
+        <input type="range" min="1" max="500" value={ANIMATION_SPEED_MS} class="slider" id="speedSlider"></input>
+        <p>Animation Speed (milliseconds): <span id="speedValue"></span></p>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="300" value={ARR_SIZE} class="slider" id="arraySlider"></input>
+        <p>Array Size: <span id="arrayValue"></span></p> -->
+    <!-- </div> -->
+    <div class="array-container">
+        <div *ngFor="let element of SORTING_ARRAY; let i = index">
+            <!-- {{i}} {{SORTING_ARRAY[i]}} -->
+            <div class="array-bar" key={i} [style.height.px]="[SORTING_ARRAY[i]]"></div>
+        </div>
+    </div>
+</div>
