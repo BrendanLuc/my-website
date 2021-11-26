@@ -65,6 +65,15 @@ form {
     border-radius: 5px;
 }
 
+.array-bar[target=_done] {
+    // display: flex;
+    // vertical-align: top;
+    background: #00a53f;
+    margin: 1px;
+    width: 10px;
+    border-radius: 5px;
+}
+
 .array-bar[target=_swap] {
     // display: flex;
     // vertical-align: top;
