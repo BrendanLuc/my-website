@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SortingVisualizerComponent implements OnInit {
 
   SORTING_ARRAY: number[] = [];
-  ARRAY_SIZE: number = 100;
+  ARRAY_SIZE: number = 10;
   VIS_MIN: number = 5;
   VIS_MAX: number = 650;
   ANIMATION_SPEED_MS = 1;
@@ -23,7 +23,6 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   toggleRunning() {
-    console.log("Toggle State")
     this.RUN_STATUS = !this.RUN_STATUS
     console.log(this.RUN_STATUS)
   }
@@ -31,17 +30,20 @@ export class SortingVisualizerComponent implements OnInit {
   // reset array and state flagss
   async reset_array() {
     this.NEW_STATE = true;
-    this.CYCLE = this.CYCLE + 1;
-    this.RUN_STATUS = true;
-    this.SORTING_ARRAY = []
-    for (let i = 0; i < this.ARRAY_SIZE; ++i) {
-      this.SORTING_ARRAY.push(this.get_random_int(this.VIS_MIN, this.VIS_MAX));
-    }
     this.RUN_STATUS = false;
+    let new_array: number[] = []
+    for (let i = 0; i < this.ARRAY_SIZE; ++i) {
+      new_array.push(this.get_random_int(this.VIS_MIN, this.VIS_MAX));
+    }
+    this.SORTING_ARRAY = new_array
+    return;
+
   }
 
   // reset array and reset css
   async reset_array_click() {
+    this.CYCLE = this.CYCLE + 1;
+    await this.delay(1000)
     this.reset_array()
     let arrayBars = document.getElementsByClassName('array-bar');
     for (let j = 0; j < this.ARRAY_SIZE; ++j){
@@ -88,10 +90,10 @@ export class SortingVisualizerComponent implements OnInit {
 
   // get bubble sort animations array
   get_bubble_sort_animations(array: number[]) {
-    // console.log("GET BUBBLE SORT ANIMATIONS")
+    // animations [[index1, index2, isswap], [], [], ...]
     var animations: number[][] = [];
     if (array.length <= 1) { 
-      console.log("RETURN -1")
+      console.log("No Animations")
       return animations;
     }
     animations = this.bubble_sort(array, animations);
@@ -100,7 +102,7 @@ export class SortingVisualizerComponent implements OnInit {
     return animations;
   }
 
-  ///////
+  ///////////
 
   // get the animations for bubble sort and process them in the front end
   async animateBubbleSort() {
@@ -124,8 +126,11 @@ export class SortingVisualizerComponent implements OnInit {
       //user paused the animation, loop until played (is there a better way to do this?)
       while (!this.RUN_STATUS) await this.delay(10); 
       //user reset the array, quit animation
+      console.log("CYCLE", this.CYCLE)
+      console.log("TEMP", cycle_temp)
+
       if (this.CYCLE !== cycle_temp) {
-        console.log('BREAKED')
+        console.log('BREAKED');
         return;
       }
 
