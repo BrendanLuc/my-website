@@ -1,0 +1,25 @@
+<div class="big-container">
+    <div class="button-array">
+        <button type="button" class="btn btn-outline-dark" (click)="reset_array_click()">Generate New Numbers</button>
+        <button type="button" class="btn btn-success" (click)="animateBubbleSort()">Bubble Sort</button>
+        <button type="button" class="btn btn-info" (click)="animateInsertionSort()">Insertion Sort</button>
+        <button type="button" class="btn btn-danger" (click)="animateMergeSort()">Merge Sort</button>
+        <button type="button" class="btn btn-warning" (click)="animateSelectionSort()">Selection Sort</button>
+        <button type="button" class="btn btn-outline-dark" (click)="toggleRunning()">{{this.RUN_STATUS ? "PAUSE" : "RUN"}}</button>
+    </div>
+
+
+    <!-- <form>
+        <fieldset class="form-group">
+            <label for="customRange1" class="form-label">Annimation Speed (ms): {{this.ANIMATION_SPEED_MS}}</label>
+            <input type="range" min="1" max="500" value={ANIMATION_SPEED_MS} class="form-range" (change)="getSliderValue($event)" (oninput)="getSliderValue($event)">
+        </fieldset>
+    </form> -->
+
+    <div class="array-container">
+        <div *ngFor="let element of SORTING_ARRAY; let i = index">
+            <!-- {{i}} {{SORTING_ARRAY[i]}} -->
+            <div class="array-bar" key={i} [style.height.px]="[this.SORTING_ARRAY[i]]"></div>
+        </div>
+    </div>
+</div>
