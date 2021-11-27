@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class SortingVisualizerComponent implements OnInit {
 
   SORTING_ARRAY: number[] = [];
-  ARRAY_SIZE: number = 10;
+  ARRAY_SIZE: number = 25;
   VIS_MIN: number = 5;
   VIS_MAX: number = 650;
   ANIMATION_SPEED_MS = 1;
   CYCLE = 0;
   RUN_STATUS = false;
   NEW_STATE = false;
+  IS_SORTED = false;
 
   constructor() {}
 
@@ -31,6 +32,8 @@ export class SortingVisualizerComponent implements OnInit {
   async reset_array() {
     this.NEW_STATE = true;
     this.RUN_STATUS = false;
+    this.IS_SORTED = false;
+    this.CYCLE = this.CYCLE + 1;
     let new_array: number[] = []
     for (let i = 0; i < this.ARRAY_SIZE; ++i) {
       new_array.push(this.get_random_int(this.VIS_MIN, this.VIS_MAX));
@@ -42,13 +45,14 @@ export class SortingVisualizerComponent implements OnInit {
 
   // reset array and reset css
   async reset_array_click() {
-    this.CYCLE = this.CYCLE + 1;
-    await this.delay(1000)
+    // console.log(this.IS_SORTED)
+    // console.log(this.NEW_STATE)
+    if (!this.IS_SORTED && !this.NEW_STATE) return;
     this.reset_array()
-    let arrayBars = document.getElementsByClassName('array-bar');
-    for (let j = 0; j < this.ARRAY_SIZE; ++j){
-      arrayBars[j].setAttribute("target", "_primary")
-    }
+    // let arrayBars = document.getElementsByClassName('array-bar');
+    // for (let j = 0; j < this.ARRAY_SIZE; ++j){
+    //   arrayBars[j].setAttribute("target", "_primary")
+    // }
     // console.log(this.SORTING_ARRAY)
   }
 
@@ -113,12 +117,14 @@ export class SortingVisualizerComponent implements OnInit {
     this.RUN_STATUS = true;
     let cycle_temp = this.CYCLE;
 
+    console.log(this.SORTING_ARRAY)
     // array shallow copy to allow for checking and updating of state values
     let array_copy = Object.assign([], this.SORTING_ARRAY);
-    let animations = this.get_bubble_sort_animations(array_copy);
-    console.log(this.SORTING_ARRAY)
     console.log(array_copy)
-    console.log(animations)
+    let animations = this.get_bubble_sort_animations(array_copy);
+    // console.log(this.SORTING_ARRAY)
+    // console.log(array_copy)
+    // console.log(animations)
 
     //animate
     for (let i = 0; i < animations.length; i++) {
@@ -126,8 +132,8 @@ export class SortingVisualizerComponent implements OnInit {
       //user paused the animation, loop until played (is there a better way to do this?)
       while (!this.RUN_STATUS) await this.delay(10); 
       //user reset the array, quit animation
-      console.log("CYCLE", this.CYCLE)
-      console.log("TEMP", cycle_temp)
+      // console.log("CYCLE", this.CYCLE)
+      // console.log("TEMP", cycle_temp)
 
       if (this.CYCLE !== cycle_temp) {
         console.log('BREAKED');
@@ -151,8 +157,8 @@ export class SortingVisualizerComponent implements OnInit {
       if (isSwap==1) {
         arrayBars[firstBar].setAttribute("target", "_swap");
         arrayBars[secondBar].setAttribute("target", "_swap");
-        const firstHeight = arrayBars[firstBar].getAttribute("style");
-        const secondHeight = arrayBars[secondBar].getAttribute("style");
+        let firstHeight = arrayBars[firstBar].getAttribute("style");
+        let secondHeight = arrayBars[secondBar].getAttribute("style");
         arrayBars[firstBar].setAttribute("style", String(secondHeight));
         arrayBars[secondBar].setAttribute("style", String(firstHeight));
         await this.delay(this.ANIMATION_SPEED_MS);
@@ -163,7 +169,7 @@ export class SortingVisualizerComponent implements OnInit {
       arrayBars[secondBar].setAttribute("target", "_primary");
       await this.delay(this.ANIMATION_SPEED_MS);
     }
-
+    this.IS_SORTED = true;
     return;
   }
   
